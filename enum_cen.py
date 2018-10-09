@@ -28,7 +28,7 @@ except ImportError:
     logging.info("\033[1;31m[!] Failed to import censys module. Run 'pip install censys'\033[1;m")
     sys.exit()
 
-def validate_certificates(domain):
+def validate_certificates():
 	if not API_ID or not API_SECRET:
 	        logging.info("\033[1;31m[!] API KEY or Secret for Censys not provided.\033[1;m" + "\nYou'll have to provide them in the script") 
         	sys.exit()
@@ -80,8 +80,9 @@ def clearScr():
 	os.system('clear')
 
 def get_domain():
-    domain = raw_input(domainPrompt)	
-    return domain
+	validate_certificates()
+	domain = raw_input(domainPrompt)	
+	return domain
 
 if __name__ == '__main__':
 	try: 
